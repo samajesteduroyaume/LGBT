@@ -48,53 +48,53 @@ export default function ForumPage() {
     }, [])
 
     return (
-        <div className="min-h-screen bg-zinc-950 text-white p-4 md:p-8">
+        <div className="min-h-screen bg-black text-zinc-100 p-4 md:p-8">
             <div className="max-w-4xl mx-auto">
-                <header className="flex justify-between items-center mb-8">
+                <header className="flex justify-between items-end mb-12 border-b border-amber-500/10 pb-8">
                     <div>
-                        <h1 className="text-3xl font-bold">Forum Communautaire</h1>
-                        <p className="text-zinc-400">Partagez, discutez et rencontrez la communauté.</p>
+                        <h1 className="text-4xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-amber-500 to-amber-200">Le Cercle</h1>
+                        <p className="text-zinc-500 uppercase tracking-widest text-xs font-bold mt-2">Discussions d'exception pour une communauté d'élite.</p>
                     </div>
-                    <Button className="bg-zinc-100 text-zinc-900 hover:bg-zinc-200 gap-2">
-                        <Plus className="h-4 w-4" /> Nouveau Post
+                    <Button className="bg-gradient-to-r from-amber-200 to-amber-500 text-black font-black hover:scale-105 transition-transform gap-2 px-6 h-12 shadow-[0_0_20px_rgba(251,191,36,0.2)]">
+                        <Plus className="h-5 w-5" /> Nouveau Post
                     </Button>
                 </header>
 
-                <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+                <div className="flex gap-3 mb-10 overflow-x-auto pb-4 no-scrollbar">
                     {['Général', 'Conseils', 'Événements', 'Témoignages'].map((cat) => (
-                        <Badge key={cat} variant="outline" className="border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white cursor-pointer px-4 py-1">
+                        <Badge key={cat} variant="outline" className="border-amber-500/10 bg-zinc-950 text-zinc-500 hover:text-amber-200 hover:border-amber-500/40 cursor-pointer px-6 py-2 uppercase tracking-tighter transition-all">
                             {cat}
                         </Badge>
                     ))}
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                     {posts.map((post) => (
-                        <Card key={post.id} className="border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 transition-colors cursor-pointer text-zinc-100 shadow-md">
-                            <CardHeader className="flex flex-row items-start gap-4 pb-2">
-                                <Avatar className="h-10 w-10 border border-zinc-800">
+                        <Card key={post.id} className="border-amber-500/5 bg-zinc-950/40 hover:bg-zinc-950 hover:border-amber-500/20 transition-all cursor-pointer text-zinc-100 shadow-xl backdrop-blur-sm group">
+                            <CardHeader className="flex flex-row items-start gap-5 pb-4">
+                                <Avatar className="h-12 w-12 border border-amber-500/10">
                                     <AvatarImage src={post.author.avatar_url} />
-                                    <AvatarFallback className="bg-zinc-800 text-zinc-400">{post.author.username[0]}</AvatarFallback>
+                                    <AvatarFallback className="bg-zinc-900 text-amber-500 font-bold">{post.author.username[0]}</AvatarFallback>
                                 </Avatar>
                                 <div className="flex-1">
                                     <div className="flex justify-between items-start">
-                                        <h3 className="text-lg font-semibold hover:text-zinc-300">{post.title}</h3>
-                                        <Badge variant="secondary" className="bg-zinc-800 text-zinc-400 border-none">{post.category}</Badge>
+                                        <h3 className="text-xl font-bold tracking-tight group-hover:text-amber-200 transition-colors">{post.title}</h3>
+                                        <Badge variant="secondary" className="bg-amber-500/10 text-amber-500 border-none px-3 py-0.5 text-[10px] uppercase font-black">{post.category}</Badge>
                                     </div>
-                                    <p className="text-xs text-zinc-500">Posté par {post.author.username} • {new Date(post.created_at).toLocaleDateString()}</p>
+                                    <p className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold mt-1">Écrit par <span className="text-zinc-400">{post.author.username}</span> • {new Date(post.created_at).toLocaleDateString()}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-zinc-400 text-sm line-clamp-3">{post.content}</p>
+                                <p className="text-zinc-500 text-sm leading-relaxed line-clamp-2">{post.content}</p>
                             </CardContent>
-                            <CardFooter className="border-t border-zinc-800/50 pt-4 flex gap-6 text-zinc-500">
-                                <div className="flex items-center gap-2 hover:text-white transition-colors">
-                                    <ThumbsUp className="h-4 w-4" />
-                                    <span className="text-sm">{post.likes}</span>
+                            <CardFooter className="border-t border-amber-500/5 pt-5 flex gap-8 text-zinc-600">
+                                <div className="flex items-center gap-2 hover:text-amber-500 transition-colors group/stat">
+                                    <ThumbsUp className="h-4 w-4 transition-transform group-hover/stat:scale-110" />
+                                    <span className="text-xs font-black">{post.likes}</span>
                                 </div>
-                                <div className="flex items-center gap-2 hover:text-white transition-colors">
-                                    <MessageSquare className="h-4 w-4" />
-                                    <span className="text-sm">{post.comments_count}</span>
+                                <div className="flex items-center gap-2 hover:text-zinc-300 transition-colors group/stat">
+                                    <MessageSquare className="h-4 w-4 transition-transform group-hover/stat:scale-110" />
+                                    <span className="text-xs font-black">{post.comments_count}</span>
                                 </div>
                             </CardFooter>
                         </Card>
