@@ -28,6 +28,7 @@
         "password": "Passwort",
         "signIn": "Anmelden",
         "signUp": "Konto erstellen",
+        "guestMode": "Ohne Konto entdecken",
         "processing": "Wird verarbeitet...",
         "checkEmail": "Überprüfen Sie Ihre E-Mails auf den Bestätigungslink!",
         "error": "Ein Fehler ist aufgetreten"

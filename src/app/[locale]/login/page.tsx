@@ -53,6 +53,18 @@ export default function LoginPage() {
         setLoading(false)
     }
 
+    const handleAnonymousLogin = async () => {
+        setLoading(true)
+        const { error } = await supabase.auth.signInAnonymously()
+        if (error) {
+            toast.error(error.message)
+        } else {
+            router.push('/dashboard')
+            router.refresh()
+        }
+        setLoading(false)
+    }
+
     return (
         <div className="relative flex min-h-screen items-center justify-center bg-black p-4 overflow-hidden selection:bg-amber-500 selection:text-black">
             {/* Background Orbs */}
@@ -140,13 +152,22 @@ export default function LoginPage() {
                                 >
                                     {t('signIn')}
                                 </Button>
-                                <Button
-                                    variant="ghost"
-                                    onClick={handleSignUp}
-                                    className="w-full h-12 text-zinc-500 hover:text-zinc-200 hover:bg-white/5 font-bold uppercase text-[9px] tracking-[0.2em] rounded-xl transition-all"
-                                >
-                                    {t('signUp')}
-                                </Button>
+                                <div className="flex w-full gap-2">
+                                    <Button
+                                        variant="ghost"
+                                        onClick={handleSignUp}
+                                        className="flex-1 h-12 text-zinc-500 hover:text-zinc-200 hover:bg-white/5 font-bold uppercase text-[9px] tracking-[0.2em] rounded-xl transition-all"
+                                    >
+                                        {t('signUp')}
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={handleAnonymousLogin}
+                                        className="flex-1 h-12 text-amber-500/50 hover:text-amber-500 hover:bg-amber-500/5 font-bold uppercase text-[9px] tracking-[0.2em] rounded-xl transition-all border border-amber-500/10"
+                                    >
+                                        {t('guestMode')}
+                                    </Button>
+                                </div>
                             </CardFooter>
                         </Card>
                     </motion.div>

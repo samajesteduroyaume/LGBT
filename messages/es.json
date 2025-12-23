@@ -28,6 +28,7 @@
         "password": "Contraseña",
         "signIn": "Iniciar sesión",
         "signUp": "Crear cuenta",
+        "guestMode": "Descubrir sin cuenta",
         "processing": "Procesando...",
         "checkEmail": "¡Revisa tu correo para el enlace de confirmación!",
         "error": "Ocurrió un error"
