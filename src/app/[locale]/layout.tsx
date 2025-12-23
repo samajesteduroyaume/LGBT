@@ -47,7 +47,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Toaster } from "@/components/ui/sonner";
 import { BottomNav } from "@/components/bottom-nav";
-import "./globals.css";
+import "../globals.css";
 
 export default async function RootLayout({
   children,
