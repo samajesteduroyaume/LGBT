@@ -7,18 +7,19 @@ import { Check, ShieldCheck, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 
 interface Props {
-    params: { id: string; locale: string }
+    params: Promise<{ id: string; locale: string }>
 }
 
 export async function generateMetadata(
     { params }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
+    const { id } = await params
     const supabase = await createClient()
     const { data: profile } = await supabase
         .from('profiles')
         .select('username, bio')
-        .eq('id', params.id)
+        .eq('id', id)
         .single()
 
     if (!profile) return { title: 'Profil Introuvable' }
@@ -35,11 +36,12 @@ export async function generateMetadata(
 }
 
 export default async function PublicProfilePage({ params }: Props) {
+    const { id } = await params
     const supabase = await createClient()
     const { data: profile } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', params.id)
+        .eq('id', id)
         .single()
 
     if (!profile) notFound()

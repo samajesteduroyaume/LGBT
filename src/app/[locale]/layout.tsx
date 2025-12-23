@@ -49,13 +49,14 @@ import { Toaster } from "@/components/ui/sonner";
 import { BottomNav } from "@/components/bottom-nav";
 import "../globals.css";
 
-export default async function RootLayout({
-  children,
-  params: { locale }
-}: {
+export default async function RootLayout(props: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const params = await props.params;
+  const locale = params.locale;
+  const children = props.children;
+
   // Validate that the incoming `locale` parameter is valid
   if (!['en', 'fr', 'de', 'es'].includes(locale)) {
     notFound();
