@@ -64,7 +64,7 @@ export default async function RootLayout(props: {
 
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
     <html lang={locale} className="dark">
