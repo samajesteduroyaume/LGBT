@@ -29,8 +29,8 @@ export default function LoginPage() {
         if (error) {
             toast.error(error.message)
         } else {
-            router.push('/dashboard')
-            router.refresh()
+            // Force relocation to dashboard with locale
+            window.location.href = '/fr/dashboard'
         }
         setLoading(false)
     }
@@ -42,7 +42,7 @@ export default function LoginPage() {
             email,
             password,
             options: {
-                emailRedirectTo: `${window.location.origin}/auth/callback`,
+                emailRedirectTo: `${window.location.origin}/auth/callback?next=/fr/dashboard`,
             }
         })
         if (error) {
