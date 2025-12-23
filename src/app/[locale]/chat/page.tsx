@@ -22,16 +22,28 @@ export default function ChatPage() {
     useEffect(() => {
         async function setupChat() {
             const { data: { user } } = await supabase.auth.getUser()
+            if (!user) return
             setUser(user)
 
-            // Simulation de réception de messages
-            const welcomeMsg = {
-                id: '1',
-                content: "Bienvenue dans votre espace de discussion privilégié.",
-                sender_id: 'system',
-                created_at: new Date().toISOString(),
+            // Charger les derniers messages
+            const { data } = await supabase
+                .from('messages')
+                .select('*')
+                .order('created_at', { ascending: true })
+
+            if (data) setMessages(data)
+
+            // Activer le temps réel
+            const channel = supabase
+                .channel('chat_main')
+                .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
+                    setMessages(prev => [...prev, payload.new])
+                })
+                .subscribe()
+
+            return () => {
+                supabase.removeChannel(channel)
             }
-            setMessages([welcomeMsg])
         }
         setupChat()
     }, [supabase])
@@ -61,24 +73,27 @@ export default function ChatPage() {
         e.preventDefault()
         if (!newMessage.trim() || !user) return
 
-        const id = Math.random().toString(36).substr(2, 9)
-        const messageObj = {
-            id,
-            content: newMessage,
-            sender_id: user.id,
-            created_at: new Date().toISOString(),
-            expires_at: isSecretMode ? new Date(Date.now() + 10000).toISOString() : null, // 10 secondes pour le secret
-            is_secret: isSecretMode
-        }
+        const expires_at = isSecretMode ? new Date(Date.now() + 10000).toISOString() : null
 
-        setMessages((prev) => [...prev, messageObj])
-        setNewMessage('')
-
-        if (isSecretMode) {
-            toast.success("Message secret envoyé (Expire dans 10s)", {
-                icon: <Timer className="h-4 w-4 text-amber-500" />,
-                className: "bg-zinc-950 border-amber-500/20 text-amber-200"
+        const { error } = await supabase
+            .from('messages')
+            .insert({
+                content: newMessage,
+                sender_id: user.id,
+                expires_at: expires_at,
+                match_id: '00000000-0000-0000-0000-000000000000' // ID de test ou réel
             })
+
+        if (error) {
+            toast.error("L'élégance a été interrompue. (Erreur d'envoi)")
+        } else {
+            setNewMessage('')
+            if (isSecretMode) {
+                toast.success("Message secret envoyé (Expire dans 10s)", {
+                    icon: <Timer className="h-4 w-4 text-amber-500" />,
+                    className: "bg-zinc-950 border-amber-500/20 text-amber-200"
+                })
+            }
         }
     }
 

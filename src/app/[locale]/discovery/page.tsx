@@ -40,7 +40,37 @@ export default function DiscoveryPage() {
 
     const handleLike = async (profileId: string) => {
         setDirection(1)
-        toast.success('Like sent! (Matching logic to be implemented in DB)')
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return
+
+        // 1. Enregistrer le Like
+        const { error } = await supabase
+            .from('likes')
+            .upsert({ sender_id: user.id, receiver_id: profileId })
+
+        if (error) {
+            toast.error("Erreur lors de l'expression de votre intérêt.")
+        } else {
+            // 2. Vérifier si c'est un Match mutuel
+            const { data: matchData } = await supabase
+                .from('likes')
+                .select('*')
+                .eq('sender_id', profileId)
+                .eq('receiver_id', user.id)
+                .single()
+
+            if (matchData) {
+                toast.success('Incroyable ! C\'est un Match Impérial !', {
+                    description: "Une nouvelle connexion d'exception vient de naître.",
+                    icon: <Sparkles className="h-4 w-4 text-amber-500" />
+                })
+                // Logique optionnelle : Créer une entrée dans 'matches'
+                await supabase.from('matches').upsert({ user_1: user.id, user_2: profileId, status: 'match' })
+            } else {
+                toast.success('Intérêt manifesté avec élégance.')
+            }
+        }
+
         setTimeout(() => nextProfile(), 200)
     }
 

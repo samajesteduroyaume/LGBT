@@ -18,34 +18,27 @@ export default function ForumPage() {
 
     useEffect(() => {
         async function fetchPosts() {
-            // Mocking forum posts for now
-            const mockPosts = [
-                {
-                    id: '1',
-                    title: 'Conseils pour un premier rendez-vous ?',
-                    content: 'Salut tout le monde ! J\'ai mon premier date demain et je stress un peu...',
-                    category: 'Conseils',
-                    author: { username: 'Alex', avatar_url: '' },
-                    likes: 5,
-                    comments_count: 3,
-                    created_at: new Date().toISOString()
-                },
-                {
-                    id: '2',
-                    title: 'Soirée LGBT+ à Paris ce weekend !',
-                    content: 'Qui est motivé pour une sortie groupée au Marais samedi soir ?',
-                    category: 'Événements',
-                    author: { username: 'Sam', avatar_url: '' },
-                    likes: 12,
-                    comments_count: 8,
-                    created_at: new Date().toISOString()
-                }
-            ]
-            setPosts(mockPosts)
+            setLoading(true)
+            const { data, error } = await supabase
+                .from('forum_posts')
+                .select(`
+                    *,
+                    author:author_id (
+                        username,
+                        avatar_url
+                    )
+                `)
+                .order('created_at', { ascending: false })
+
+            if (data) {
+                setPosts(data)
+            } else if (error) {
+                toast.error("Échec de la récupération du Cercle.")
+            }
             setLoading(false)
         }
         fetchPosts()
-    }, [])
+    }, [supabase])
 
     return (
         <div className="min-h-screen bg-black text-zinc-100 p-4 md:p-8">
