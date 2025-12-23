@@ -20,5 +20,16 @@
         "premium": "Prestige",
         "notifications": "Benachrichtigungen",
         "profile": "Profil"
+    },
+    "Auth": {
+        "title": "Willkommen zurück",
+        "subtitle": "Geben Sie Ihre Daten ein, um dem Zirkel beizutreten",
+        "email": "Email",
+        "password": "Passwort",
+        "signIn": "Anmelden",
+        "signUp": "Konto erstellen",
+        "processing": "Wird verarbeitet...",
+        "checkEmail": "Überprüfen Sie Ihre E-Mails auf den Bestätigungslink!",
+        "error": "Ein Fehler ist aufgetreten"
     }
 }

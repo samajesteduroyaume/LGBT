@@ -6,7 +6,7 @@
         "forum_cta": "El Círculo Privado",
         "features": {
             "security": "Privacidad Real",
-            "security_desc": "Un entorno altamente seguro donde su privacidad es nuestra prioridad absoluta.",
+            "security_desc": "Un entorno altamente seguro donde su privacidad es nuestra priorité absoluta.",
             "match": "Partidos Excepcionales",
             "match_desc": "Algoritmos refinados para conectarlo con personas que comparten sus valores de excelencia.",
             "chat": "Intercambios Privilegiados",
@@ -20,5 +20,16 @@
         "premium": "Prestigio",
         "notifications": "Alertas",
         "profile": "Perfil"
+    },
+    "Auth": {
+        "title": "Bienvenido",
+        "subtitle": "Ingrese sus credenciales para unirse al Círculo",
+        "email": "Email",
+        "password": "Contraseña",
+        "signIn": "Iniciar sesión",
+        "signUp": "Crear cuenta",
+        "processing": "Procesando...",
+        "checkEmail": "¡Revisa tu correo para el enlace de confirmación!",
+        "error": "Ocurrió un error"
     }
 }

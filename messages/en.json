@@ -20,5 +20,16 @@
         "premium": "Prestige",
         "notifications": "Alerts",
         "profile": "Profile"
+    },
+    "Auth": {
+        "title": "Welcome Back",
+        "subtitle": "Enter your credentials to join the Circle",
+        "email": "Email",
+        "password": "Password",
+        "signIn": "Sign In",
+        "signUp": "Create Account",
+        "processing": "Processing...",
+        "checkEmail": "Check your email for the confirmation link!",
+        "error": "An error occurred"
     }
 }

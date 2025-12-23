@@ -20,5 +20,16 @@
         "premium": "Prestige",
         "notifications": "Alertes",
         "profile": "Profil"
+    },
+    "Auth": {
+        "title": "Bienvenue",
+        "subtitle": "Entrez vos accès pour rejoindre le Cercle",
+        "email": "Email",
+        "password": "Mot de passe",
+        "signIn": "Se connecter",
+        "signUp": "Créer un compte",
+        "processing": "Traitement en cours...",
+        "checkEmail": "Vérifiez vos emails pour confirmer votre compte !",
+        "error": "Une erreur est survenue"
     }
 }
