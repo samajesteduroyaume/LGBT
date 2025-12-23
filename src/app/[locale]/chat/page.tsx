@@ -36,9 +36,12 @@ export default function ChatPage() {
             // Activer le temps réel
             const channel = supabase
                 .channel('chat_main')
-                .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
-                    setMessages(prev => [...prev, payload.new])
-                })
+                .on('postgres_changes',
+                    { event: 'INSERT', schema: 'public', table: 'messages' },
+                    (payload: { new: any }) => {
+                        setMessages(prev => [...prev, payload.new])
+                    }
+                )
                 .subscribe()
 
             return () => {

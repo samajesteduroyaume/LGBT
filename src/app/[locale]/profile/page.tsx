@@ -302,7 +302,26 @@ export default function ProfilePage() {
                                                 key={gift.id}
                                                 whileHover={{ scale: 1.05 }}
                                                 className="flex flex-col items-center justify-center p-6 rounded-2xl bg-black border border-white/5 group cursor-pointer hover:border-amber-500/30 transition-all"
-                                                onClick={() => toast.success(`Cadeau sélectionné: ${gift.name}`)}
+                                                onClick={async () => {
+                                                    const { data: { user } } = await supabase.auth.getUser()
+                                                    if (!user) return
+
+                                                    const { error } = await supabase
+                                                        .from('received_gifts')
+                                                        .insert({
+                                                            gift_id: gift.id,
+                                                            sender_id: user.id,
+                                                            receiver_id: user.id // Pour l'instant on s'envoie un cadeau à soi-même ou on simule
+                                                        })
+
+                                                    if (error) {
+                                                        toast.error("Le coffre-fort est bloqué.")
+                                                    } else {
+                                                        toast.success(`Succès ! Vous avez acquis : ${gift.name}`, {
+                                                            icon: <gift.icon className="h-4 w-4 text-amber-500" />
+                                                        })
+                                                    }
+                                                }}
                                             >
                                                 <gift.icon className={`h-12 w-12 mb-4 ${gift.color} opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-transform`} />
                                                 <span className="text-[10px] font-black uppercase tracking-widest text-zinc-200 group-hover:text-amber-500">{gift.name}</span>
