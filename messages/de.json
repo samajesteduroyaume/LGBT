@@ -1,0 +1,24 @@
+{
+    "Home": {
+        "title": "Exzellenz trifft auf Liebe.",
+        "subtitle": "Die prestigeträchtigste und inklusivste Dating-Plattform. Ein maßgeschneidertes Erlebnis für anspruchsvolle Seelen.",
+        "cta": "Der Elite beitreten",
+        "forum_cta": "Der private Zirkel",
+        "features": {
+            "security": "Königliche Privatsphäre",
+            "security_desc": "Une hochsichere Umgebung, in der Ihre Privatsphäre unsere oberste Priorität ist.",
+            "match": "Außergewöhnliche Matches",
+            "match_desc": "Raffinierte Algorithmen, um Sie mit Menschen zu verbinden, die Ihre Werte der Exzellenz teilen.",
+            "chat": "Privilegierter Austausch",
+            "chat_desc": "Hochleistungs-Messaging und HD-Videoanrufe für Momente purer Komplizenschaft."
+        }
+    },
+    "Nav": {
+        "discovery": "Entdeckung",
+        "chat": "Chat",
+        "forum": "Der Zirkel",
+        "premium": "Prestige",
+        "notifications": "Benachrichtigungen",
+        "profile": "Profil"
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "Home": {
+        "title": "La excelencia se encuentra con el amor.",
+        "subtitle": "La plataforma de citas más prestigiosa e inclusiva. Una experiencia a medida para almas exigentes.",
+        "cta": "Unirse a la Élite",
+        "forum_cta": "El Círculo Privado",
+        "features": {
+            "security": "Privacidad Real",
+            "security_desc": "Un entorno altamente seguro donde su privacidad es nuestra prioridad absoluta.",
+            "match": "Partidos Excepcionales",
+            "match_desc": "Algoritmos refinados para conectarlo con personas que comparten sus valores de excelencia.",
+            "chat": "Intercambios Privilegiados",
+            "chat_desc": "Mensajería de alto rendimiento y videollamadas HD para momentos de pura complicidad."
+        }
+    },
+    "Nav": {
+        "discovery": "Descubrimiento",
+        "chat": "Chat",
+        "forum": "El Círculo",
+        "premium": "Prestigio",
+        "notifications": "Alertas",
+        "profile": "Perfil"
+    }
+}

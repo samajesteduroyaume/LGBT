@@ -1,0 +1,24 @@
+{
+    "Home": {
+        "title": "L'excellence rencontre l'amour.",
+        "subtitle": "La plateforme de rencontre la plus prestigieuse et inclusive. Une expérience sur mesure pour les âmes exigeantes.",
+        "cta": "Rejoindre l'Élite",
+        "forum_cta": "Le Cercle Privé",
+        "features": {
+            "security": "Confidentialité Royale",
+            "security_desc": "Un environnement hautement sécurisé où votre vie privée est notre priorité absolue.",
+            "match": "Matches d'Exception",
+            "match_desc": "Des algorithmes raffinés pour vous connecter avec des personnes qui partagent vos valeurs d'excellence.",
+            "chat": "Échanges Privilégiés",
+            "chat_desc": "Messagerie haute performance et appels vidéo HD pour des moments de pure complicité."
+        }
+    },
+    "Nav": {
+        "discovery": "Découverte",
+        "chat": "Chat",
+        "forum": "Le Cercle",
+        "premium": "Prestige",
+        "notifications": "Alertes",
+        "profile": "Profil"
+    }
+}

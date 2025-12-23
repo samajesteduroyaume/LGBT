@@ -1,0 +1,24 @@
+{
+    "Home": {
+        "title": "Excellence meets love.",
+        "subtitle": "The most prestigious and inclusive dating platform. A tailor-made experience for demanding souls.",
+        "cta": "Join the Elite",
+        "forum_cta": "The Private Circle",
+        "features": {
+            "security": "Royal Privacy",
+            "security_desc": "A highly secure environment where your privacy is our top priority.",
+            "match": "Exceptional Matches",
+            "match_desc": "Refined algorithms to connect you with people who share your values of excellence.",
+            "chat": "Privileged Exchanges",
+            "chat_desc": "High-performance messaging and HD video calls for moments of pure complicity."
+        }
+    },
+    "Nav": {
+        "discovery": "Discovery",
+        "chat": "Chat",
+        "forum": "The Circle",
+        "premium": "Prestige",
+        "notifications": "Alerts",
+        "profile": "Profile"
+    }
+}

@@ -23,28 +23,57 @@ export const metadata: Metadata = {
     title: 'LGBT+ Dating | Rencontres Bienveillantes',
     description: 'La plateforme de rencontre moderne, sécurisée et inclusive pour la communauté LGBT+.',
   },
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/icons/icon-512x512.png',
+    apple: '/icons/icon-512x512.png',
+  },
+  themeColor: '#000000',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    viewportFit: 'cover'
+  },
   robots: {
     index: true,
     follow: true,
   }
 }
 
-import { Toaster } from "@/components/ui/sonner"
-import { BottomNav } from "@/components/bottom-nav"
-import "./globals.css"
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { Toaster } from "@/components/ui/sonner";
+import { BottomNav } from "@/components/bottom-nav";
+import "./globals.css";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params: { locale }
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  params: { locale: string };
 }) {
+  // Validate that the incoming `locale` parameter is valid
+  if (!['en', 'fr', 'de', 'es'].includes(locale)) {
+    notFound();
+  }
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
-    <html lang="fr" className="dark">
+    <html lang={locale} className="dark">
       <body className="antialiased pb-16 md:pb-0">
-        {children}
-        <BottomNav />
-        <Toaster />
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <BottomNav />
+          <Toaster />
+        </NextIntlClientProvider>
       </body>
     </html>
-  )
+  );
 }
