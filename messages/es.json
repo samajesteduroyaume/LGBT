@@ -1,7 +1,7 @@
 {
     "Home": {
-        "title": "La excelencia se encuentra con el amor.",
-        "subtitle": "La plataforma de citas más prestigiosa e inclusiva. Una experiencia a medida para almas exigentes.",
+        "title": "La excelencia se encuentra con<span>el amor.</span>",
+        "subtitle": "La plataforma de citas más prestigiosa e inclusiva. Una<span>experiencia</span> a medida para almas exigentes.",
         "cta": "Unirse a la Élite",
         "forum_cta": "El Círculo Privado",
         "features": {
